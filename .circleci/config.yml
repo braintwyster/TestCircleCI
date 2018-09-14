@@ -1,6 +1,6 @@
 version: 2
 jobs:
-    build:
+    one:
         docker:
             - image: node:10.10.0-alpine
         steps:
@@ -8,3 +8,18 @@ jobs:
             - run:
                 name: Greetings
                 command: echo "Sup!"
+    two:
+        docker:
+            - image: node:10.10.0-alpine
+        steps:
+            - checkout
+            - run:
+                name: Greetings
+                command: echo "Not Much. How about you?"
+
+workflows:
+    version: 2
+    one_and_two:
+        jobs:
+            - one
+            - two
