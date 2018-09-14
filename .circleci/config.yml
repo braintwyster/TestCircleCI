@@ -5,21 +5,33 @@ jobs:
             - image: node
         steps:
             - checkout
-            - run:
-                name: Greetings
-                command: echo "Sup!"
+            - run: echo "Yo!"
+            - run: mkdir -p my_workspace
+            - run: echo "Sup with you?" > my_workspace/echo-output
+            - persist_to_workspace:
+                root: my_workspace
+                paths:
+                    - echo-output
     two:
         docker:
             - image: node
         steps:
             - checkout
-            - run:
-                name: Greetings
-                command: echo "Not Much. How about you?"
+            - run: echo "Yo Yo!"
+            - attach_workspace:
+                at: my_workspace
+            - run: |
+                if [[ $(cat my_workspace/echo-output) == "Sup with you?"]]; then
+                    echo "Just Trying out this CircleCI Tut"
+                else
+                    echo "What? I can't hear you"; exit 1
+                fi
 
 workflows:
     version: 2
     one_and_two:
         jobs:
             - one
-            - two
+            - two:
+                required:
+                    - one
