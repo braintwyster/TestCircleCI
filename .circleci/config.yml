@@ -2,7 +2,7 @@ version: 2
 jobs:
     one:
         docker:
-            - image: node:10.10.0-alpine
+            - image: node
         steps:
             - checkout
             - run:
@@ -10,7 +10,7 @@ jobs:
                 command: echo "Sup!"
     two:
         docker:
-            - image: node:10.10.0-alpine
+            - image: node
         steps:
             - checkout
             - run:
