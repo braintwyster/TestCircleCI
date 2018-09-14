@@ -1,0 +1,10 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: node:10.10.0-alpine
+        steps:
+            - checkout
+            - run:
+                name: Greetings
+                command: echo "Sup!"
