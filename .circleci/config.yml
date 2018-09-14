@@ -21,7 +21,7 @@ jobs:
             - attach_workspace:
                 at: my_workspace
             - run: |
-                if [[ $(cat my_workspace/echo-output) == "Sup with you?"]]; then
+                if [[ $(cat my_workspace/echo-output) == "Sup with you?" ]]; then
                     echo "Just Trying out this CircleCI Tut";
                 else
                     echo "What? I can't hear you"; exit 1
